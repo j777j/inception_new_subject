@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 set -e
 
 # 确保初始化 SQL 目录存在
@@ -13,5 +13,5 @@ FLUSH PRIVILEGES;
 ALTER USER 'root'@'localhost' IDENTIFIED BY '${DB_ROOT_PASS}';
 EOF
 
-# MariaDB to PID1
-exec mariadbd --bind-address=0.0.0.0 --init-file=/docker-entrypoint-initdb.d/init.sql
+# MariaDB to PID1，使用 mysql 用户启动
+exec mariadbd --user=mysql --bind-address=0.0.0.0 --init-file=/docker-entrypoint-initdb.d/init.sql
