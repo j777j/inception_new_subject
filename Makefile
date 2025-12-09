@@ -1,20 +1,47 @@
-NAME = inception
+# **************************************************************************** #
+#                                   COLORS                                     #
+# **************************************************************************** #
+RESET		:=	\033[0m
+GREEN		:=	\033[32m
+YELLOW		:=	\033[33m
+BLUE		:=	\033[34m
 
-all: up
+# **************************************************************************** #
+#                                   CONFIG                                      #
+# **************************************************************************** #
+
+NAME		:=	inception
+COMPOSE		:=	docker compose -f srcs/docker-compose.yml
+
+# Host volumes path
+VOLUMES		:=	/home/juwang/data
+
+# **************************************************************************** #
+#                                   RULES                                       #
+# **************************************************************************** #
+
+all:	$(NAME)
+
+$(NAME):
+	@echo "$(BLUE)[ Building containers... ]$(RESET)"
+	@$(COMPOSE) build
+	@echo "$(GREEN)[ Starting services... ]$(RESET)"
+	@$(COMPOSE) up -d
 
 up:
-	docker compose -f srcs/docker-compose.yml up --build -d
+	@$(COMPOSE) up -d
 
 down:
-	docker compose -f srcs/docker-compose.yml down --volumes --remove-orphans
+	@$(COMPOSE) down
 
 clean: down
-	docker system prune -af
+	@echo "$(YELLOW)[ Removing containers, images, volumes... ]$(RESET)"
+	@docker system prune -af --volumes
 
 fclean: clean
-	sudo rm -rf /home/juwang/data/mariadb/*
-	sudo rm -rf /home/juwang/data/wordpress/*
+	@echo "$(YELLOW)[ Removing volumes directory... ]$(RESET)"
+	@sudo rm -rf $(VOLUMES)
 
 re: fclean all
 
-.PHONY: all up down clean fclean re
+.PHONY: all clean fclean re down up
