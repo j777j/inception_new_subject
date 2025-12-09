@@ -39,4 +39,4 @@ if ! wp core is-installed --allow-root; then
 fi
 
 # 启动 php-fpm（使用系统默认命令）
-exec $(which php-fpm) -F
+exec php-fpm8.2 -F
