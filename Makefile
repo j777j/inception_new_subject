@@ -28,7 +28,6 @@ all: prepare $(NAME)
 prepare:
 	@echo "$(BLUE)[ Checking and creating host directories... ]$(RESET)"
 	@mkdir -p $(MARIADB_DIR) $(WP_DIR)
-	@chown -R $(shell id -u):$(shell id -g) $(MARIADB_DIR) $(WP_DIR)
 
 $(NAME):
 	@echo "$(BLUE)[ Building containers... ]$(RESET)"
