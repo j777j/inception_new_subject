@@ -1,10 +1,8 @@
-# inception_new_subject
-
-T-T
 
 
 
-Thanks very much for your time and for going through this with me!
+
+Anything you want to do just do it ASAP!
 
 The subject changed just before I could submitT-T
 
