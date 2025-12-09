@@ -1,3 +1,5 @@
+version: "3.9"
+
 services:
   mariadb:
     container_name: mariadb
@@ -38,7 +40,7 @@ services:
     container_name: adminer
     build:
       context: ./requirements/bonus/adminer
-    image: adminer:latest
+    image: adminer
     ports:
       - "8080:8080"  # for browser visit
     depends_on:
@@ -49,7 +51,17 @@ services:
 
 volumes:
   mariadb:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/juwang/data/mariadb
+      o: bind
   wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/juwang/data/wordpress
+      o: bind
 
 networks:
   inception:
