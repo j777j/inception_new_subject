@@ -1,17 +1,19 @@
 #!/bin/bash
+set -e
+set -x
 
-# Wait for mariadb
+# 等待 mariadb 启动
 until mysqladmin ping -h mariadb --silent; do
     sleep 1
 done
 
-# Download WordPress if missing
+# 下载 WordPress
 if [ ! -f /var/www/html/wp-config.php ]; then
     wp core download --allow-root
 fi
 
-# Create wp-config.php
-if [ ! -f wp-config.php ]; then
+# 创建 wp-config.php
+if [ ! -f /var/www/html/wp-config.php ]; then
     wp config create \
         --dbname=$DB_NAME \
         --dbuser=$DB_USER \
@@ -20,7 +22,7 @@ if [ ! -f wp-config.php ]; then
         --allow-root
 fi
 
-# Install WordPress
+# 安装 WordPress
 if ! wp core is-installed --allow-root; then
     wp core install \
         --url=$DOMAIN_NAME \
@@ -36,4 +38,5 @@ if ! wp core is-installed --allow-root; then
         --allow-root
 fi
 
-exec php-fpm8.2 -F
+# 启动 php-fpm（使用系统默认命令）
+exec php-fpm -F
