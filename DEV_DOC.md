@@ -1,3 +1,16 @@
+# Developer Documentation
+
+## Prerequisites
+- Docker >= 24.x
+- Docker Compose >= 2.x
+- GNU Make
+
+## Setup
+1. Clone the repository.
+2. Copy `.env.example` to `.env` and fill in credentials.
+3. Prepare host directories for volumes:
+   ```bash
+   mkdir -p /home/juwang/data/mariadb /home/juwang/data/wordpress
 
 
 
@@ -5,7 +18,7 @@
 
 Develop anything ASAP!
 
-The subject changed just before I could submitT-T
+The subject changed just before I could submit T-T
 
 
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀

@@ -1,10 +1,27 @@
+# User Documentation
 
+## Starting and Stopping the Stack
+- **Start:** `make up`
+- **Stop:** `make down`
+- **Clean all data and rebuild (dangerous!):** `make fclean && make all`
+
+## Accessing Services
+- **WordPress site:** https://juwang.42.fr
+- **WordPress admin panel:** https://juwang.42.fr/wp-admin
+  Credentials from `.env` file.
+- **Adminer:** http://<VM-IP>:8080
+  Use `.env` database credentials.
+
+## Basic Checks
+- Verify WordPress displays correctly.
+- Verify database tables are created.
+- Check that NGINX is serving via HTTPS only.
 
 
 
 Anything you want to do just do it ASAP!
 
-The subject changed just before I could submitT-T
+The subject changed just before I could submit T-T
 
 
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
