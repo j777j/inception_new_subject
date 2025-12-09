@@ -15,12 +15,20 @@ COMPOSE		:=	docker compose -f srcs/docker-compose.yml
 
 # Host volumes path
 VOLUMES		:=	/home/juwang/data
+MARIADB_DIR	:=	$(VOLUMES)/mariadb
+WP_DIR		:=	$(VOLUMES)/wordpress
 
 # **************************************************************************** #
 #                                   RULES                                       #
 # **************************************************************************** #
 
-all:	$(NAME)
+all: prepare $(NAME)
+
+# Prepare host directories
+prepare:
+	@echo "$(BLUE)[ Checking and creating host directories... ]$(RESET)"
+	@mkdir -p $(MARIADB_DIR) $(WP_DIR)
+	@chown -R $(shell id -u):$(shell id -g) $(MARIADB_DIR) $(WP_DIR)
 
 $(NAME):
 	@echo "$(BLUE)[ Building containers... ]$(RESET)"
@@ -28,7 +36,7 @@ $(NAME):
 	@echo "$(GREEN)[ Starting services... ]$(RESET)"
 	@$(COMPOSE) up -d
 
-up:
+up: prepare
 	@$(COMPOSE) up -d
 
 down:
@@ -44,4 +52,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re down up
+.PHONY: all prepare clean fclean re down up
