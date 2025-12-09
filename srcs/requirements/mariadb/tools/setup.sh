@@ -14,4 +14,4 @@ ALTER USER 'root'@'localhost' IDENTIFIED BY '${DB_ROOT_PASS}';
 EOF
 
 # 以 mysql 用户启动 MariaDB
-exec su -s /bin/bash mysql -c "mariadbd --init-file=/docker-entrypoint-initdb.d/init.sql"
+exec su -s /bin/bash mysql -c "mariadbd --bind-address=0.0.0.0 --init-file=/docker-entrypoint-initdb.d/init.sql"
